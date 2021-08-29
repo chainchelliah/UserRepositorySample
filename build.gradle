@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${Versions.gradle}"
+        classpath "com.google.gms:google-services:${Versions.googleServices}"
+        classpath "io.fabric.tools:gradle:${Versions.fabric}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0-RC14"
+    id "com.github.ben-manes.versions" version "0.21.0"
+}
+
+allprojects {
+    apply from: "$rootDir/ktlint.gradle"
+    apply from: "$rootDir/detekt.gradle"
+
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://jitpack.io' }
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task x(type: GradleBuild) { tasks = ["detekt", "ktlint", "lintDebug", "testDebugUnitTest"] }

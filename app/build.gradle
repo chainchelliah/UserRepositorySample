@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'io.fabric'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.compileSdk
+    defaultConfig {
+        applicationId ApplicationId.id
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Releases.versionCode
+        versionName Releases.versionName
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    buildFeatures.viewBinding = true
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation Libraries.kotlin
+    implementation Libraries.ktx
+    implementation Libraries.kotlinReflect
+    implementation Libraries.coroutineCore
+    implementation Libraries.coroutineAndroid
+
+    implementation SupportLibraries.design
+    implementation SupportLibraries.cardview
+    implementation SupportLibraries.appcompat
+    implementation SupportLibraries.recyclerview
+    implementation SupportLibraries.constrainLayout
+
+    implementation Libraries.koinAndroid
+    implementation Libraries.lottieVersion
+    implementation Libraries.coil
+
+    implementation Libraries.lifecycleViewModel
+    implementation Libraries.lifecycleExtensions
+    implementation Libraries.lifecycleCommon
+    kapt Libraries.lifecycleCompiler
+
+    implementation Libraries.room
+    kapt Libraries.roomCompiler
+
+    implementation Libraries.retrofit
+    implementation Libraries.gson
+    implementation Libraries.retrofitGsonAdapter
+    implementation Libraries.loggingInterceptor
+
+    implementation Libraries.crashlytics
+    implementation Libraries.timber
+    implementation Libraries.stetho
+    implementation Libraries.stethoOkHttp
+
+    debugImplementation Libraries.leakCanaryAndroid
+
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.junitAndroid
+    testImplementation TestLibraries.testCore
+    testImplementation TestLibraries.junitExt
+    testImplementation TestLibraries.assertjCore
+    testImplementation TestLibraries.mockitoKotlin
+    testImplementation TestLibraries.mockitoInline
+    testImplementation TestLibraries.mockitoCore
+    testImplementation TestLibraries.lifecycleTesting
+    testImplementation Libraries.coroutineAndroid
+    testImplementation TestLibraries.coroutineTesting
+}
+
+apply plugin: 'com.google.gms.google-services'
