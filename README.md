@@ -1,2 +1,2 @@
 # UserRepositorySample
-Fetch Github users public repositories by using id.
+Fetch Github users public repositories by id.
